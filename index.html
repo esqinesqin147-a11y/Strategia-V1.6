@@ -80,4 +80,20 @@
 
     function setG(v, b) { gen = v; b.parentNode.querySelectorAll('.sel-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); }
     function setD(v, b) { diff = v; b.parentNode.querySelectorAll('.sel-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); }
+        function start() {
+        document.getElementById('menu').style.display = 'none';
+        active = true;
+        if(diff === 0) gold = 500;
+        const cont = document.getElementById('mapContainer');
+        for(let i=0; i<16; i++) {
+            let d = document.createElement('div');
+            let isWater = (i === 3 || i === 7 || i === 12);
+            d.className = 'tile ' + (i===0 ? 'player' : (isWater ? 'enemy water' : 'enemy'));
+                d.innerHTML = i===0 ? "HQ" : (isWater ? "SEA" : "ZONE");
+            d.onclick = () => { document.querySelectorAll('.tile').forEach(x => x.classList.remove('selected')); d.classList.add('selected'); selected = d; };
+            cont.appendChild(d);
+        }
+        setInterval(tick, 1000);
+        setInterval(chaosEvent, 20000);
+    }
     
