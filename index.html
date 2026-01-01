@@ -112,4 +112,11 @@
         }
         updateUI();
     }
+        function buy(t) {
+        let cost = [0, 30, 150, 1000, 600][t];
+        if(gen === 1) cost *= 0.70;
+        if(gold >= cost) {
+            gold -= cost;
+            if(t===1) army += 20; 
+            if(t===2) { army += 110; shake(); }
     
