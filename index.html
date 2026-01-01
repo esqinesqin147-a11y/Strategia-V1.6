@@ -96,4 +96,20 @@
         setInterval(tick, 1000);
         setInterval(chaosEvent, 20000);
     }
+        function tick() {
+        if(!active) return;
+        if(!glitchActive) {
+            let income = provs * (gen === 0 ? 15 : 8) + (ships * 40);
+            if(gen === 2) income += 10;
+            gold += income;
+    }
+            if(diff === 2) {
+            time--;
+            document.getElementById('timer').innerText = time + "s";
+            if(time <= 0) showEnd(false);
+        } else {
+            document.getElementById('timer').innerText = "∞";
+        }
+        updateUI();
+    }
     
