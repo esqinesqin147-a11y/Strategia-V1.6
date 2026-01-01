@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Strategia v1.6.2 - Balanced Edition</title>
+    <style>
+        :root { --bg: #020617; --card: #1e293b; --gold: #f59e0b; --red: #ef4444; --green: #10b981; --blue: #3b82f6; --sci: #a855f7; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        body { font-family: 'Courier New', monospace; background: var(--bg); color: #cbd5e1; height: 100vh; overflow: hidden; transition: filter 0.5s; }
+        .glitch { animation: glitch 1.5s linear infinite; color: var(--gold); text-align: center; font-size: 28px; }
+        @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); text-shadow: 2px 0 red; } 60% { transform: translate(2px, 2px); text-shadow: -2px 0 blue; } 100% { transform: translate(0); } }
+
+        #header { background: #0f172a; padding: 10px; display: flex; justify-content: space-around; border-bottom: 2px solid var(--blue); font-size: 12px; }
+        .stat span { color: var(--gold); font-size: 16px; font-weight: bold; display: block; text-align: center; }
+              #mapContainer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 10px; flex-grow: 1; }
+        .tile { aspect-ratio: 1; background: var(--card); border: 2px solid #334155; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; cursor: pointer; transition: 0.1s; font-weight: bold; text-align: center; }
+        .player { background: #064e3b; border-color: var(--green); box-shadow: inset 0 0 10px var(--green); }
+        .enemy { background: #450a0a; border-color: var(--red); }
+        .water { background: #1e3a8a; border-color: var(--blue); }
+        .selected { border-color: white; transform: scale(1.05); z-index: 5; }
+              #controls { background: #0f172a; padding: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 1px solid var(--blue); }
+        button { padding: 12px; border: none; border-radius: 4px; color: white; font-weight: bold; cursor: pointer; font-size: 11px; background: #334155; transition: 0.2s; }
+        button:active { transform: scale(0.95); }
+        .btn-atk { background: var(--red); grid-column: span 2; font-size: 14px; }
+              #end-screen { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(10px); background: rgba(0,0,0,0.85); text-align: center; }
+        .victory-text { color: var(--green); font-size: 40px; text-shadow: 0 0 20px var(--green); }
+        .defeat-text { color: var(--red); font-size: 35px; text-shadow: 0 0 20px var(--red); }
+        .confetti { position: fixed; width: 8px; height: 8px; z-index: 1000; top: -10px; animation: fall 3s linear forwards; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+              #menu { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .sel-group { margin-bottom: 20px; width: 100%; text-align: center; }
+        .sel-btn { padding: 10px; margin: 3px; background: #1e293b; border: 1px solid var(--blue); color: white; width: 85px; font-size: 10px; }
+        .active { background: var(--blue); box-shadow: 0 0 15px var(--blue); border-color: white; }
+    </style>
+</head>
+<body id="mainBody">
+
+    <div id="menu">
+        <h1 class="glitch">STRATEGIA v1.6.2</h1>
+        
+        <div class="sel-group">
+            <p style="margin-bottom: 8px;">CHOOSE GENERAL</p>
+            <button class="sel-btn active" onclick="setG(0, this)">ECONOMIST</button>
+            <button class="sel-btn" onclick="setG(1, this)">SOLDIER</button>
+            <button class="sel-btn" onclick="setG(2, this)">SCIENTIST</button>
+        </div>
+                <div class="sel-group">
+            <p style="margin-bottom: 8px;">DIFFICULTY</p>
+            <button class="sel-btn" onclick="setD(0, this)">EASY</button>
+            <button class="sel-btn active" onclick="setD(1, this)">NORMAL</button>
+            <button class="sel-btn" onclick="setD(2, this)">HARD</button>
+        </div>
+
+        <button onclick="start()" style="background:var(--green); padding: 15px 60px; font-size: 18px; font-weight: bold; border-radius: 50px;">LAUNCH</button>
+    </div>
+    
