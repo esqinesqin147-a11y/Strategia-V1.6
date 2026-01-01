@@ -124,4 +124,21 @@
         }
         updateUI();
     }
+        function attack() {
+        if(!selected || selected.classList.contains('player')) return;
+        if(selected.classList.contains('water') && ships < 1) { alert("NEED NAVY SUPPORT!"); return; }
+        
+        let pwr = army + (gen === 2 ? 100 : 0);
+        let baseReq = (diff === 0) ? 80 : (diff === 1 ? 120 : 180);
+        let req = baseReq + (provs * 130);
+            if(pwr >= req) {
+            army -= Math.floor(req/5); provs++;
+            selected.className = 'tile player'; selected.innerHTML = "SAFE";
+            if(provs === 16) showEnd(true);
+        } else { 
+            document.body.style.filter = "invert(1)";
+            setTimeout(() => document.body.style.filter = "none", 150);
+        }
+        updateUI();
+    }
     
