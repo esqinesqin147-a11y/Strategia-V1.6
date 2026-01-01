@@ -54,4 +54,19 @@
 
         <button onclick="start()" style="background:var(--green); padding: 15px 60px; font-size: 18px; font-weight: bold; border-radius: 50px;">LAUNCH</button>
     </div>
+        <div id="header">
+        <div class="stat">GOLD <span id="gold">0</span></div>
+        <div class="stat">ARMY <span id="army">0</span></div>
+        <div class="stat">SHIPS <span id="ships">0</span></div>
+        <div class="stat">TIMER <span id="timer">∞</span></div>
+    </div>
+
+    <div id="mapContainer"></div>
+        <div id="controls">
+        <button onclick="buy(1)">INFANTRY (30$)</button>
+        <button onclick="buy(2)">TANK (150$)</button>
+        <button onclick="buy(3)" style="background:var(--blue)">SHIP (1000$)</button>
+        <button onclick="buy(4)">PLANE (600$)</button>
+        <button class="btn-atk" onclick="attack()">EXECUTE ATTACK</button>
+        </div>
     
