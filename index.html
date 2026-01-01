@@ -69,4 +69,15 @@
         <button onclick="buy(4)">PLANE (600$)</button>
         <button class="btn-atk" onclick="attack()">EXECUTE ATTACK</button>
         </div>
+        <div id="end-screen">
+        <div id="result-msg"></div>
+        <button onclick="location.reload()" style="margin-top:30px; background:var(--blue); padding:15px 40px;">REBOOT SYSTEM</button>
+    </div>
+
+<script>
+    let gold = 300, army = 50, ships = 0, planes = 0, provs = 1, diff = 1, gen = 0, time = 120, active = false, selected = null;
+    let glitchActive = false;
+
+    function setG(v, b) { gen = v; b.parentNode.querySelectorAll('.sel-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); }
+    function setD(v, b) { diff = v; b.parentNode.querySelectorAll('.sel-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); }
     
