@@ -162,4 +162,30 @@
         c.style.animationDelay = Math.random() * 2 + "s";
         document.body.appendChild(c);
     }
-    
+        function chaosEvent() {
+        if(!active) return;
+        if(Math.random() < 0.3) {
+            let owned = document.querySelectorAll('.tile.player:not(:first-child)');
+            if(owned.length > 0) {
+                let target = owned[Math.floor(Math.random()*owned.length)];
+                                target.className = 'tile enemy'; target.innerHTML = "REBEL"; provs--;
+            }
+        }
+    }
+
+    function shake() {
+        let b = document.getElementById('mainBody');
+        b.style.transform = "translateX(5px)";
+                setTimeout(() => b.style.transform = "translateX(-5px)", 50);
+        setTimeout(() => b.style.transform = "none", 100);
+    }
+
+    function updateUI() {
+        if(!glitchActive) document.getElementById('gold').innerText = Math.floor(gold);
+                    document.getElementById('army').innerText = army;
+        document.getElementById('ships').innerText = ships;
+    }
+</script>
+</body>
+</html>
+
